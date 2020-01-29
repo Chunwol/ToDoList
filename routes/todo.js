@@ -41,13 +41,89 @@ exports.main_show = (req, res, next) => {
 };
 exports.main_insert = (req, res) => {
     let body = req.body;
+    console.log(req.params.id);
+    console.log(body.inputContent);
+    Send.todos.create({
+        userid: req.params.id,
+        Contents: body.inputContent,
+        finished: true
+      })
+      .then( result => {
+        console.log("추가 완료");
+        res.redirect("/main");
+      })
+      .catch( err => {
+        console.log("추가 불가");
+      })
 }
 exports.main_delete = (req, res) => {
-    let body = req.body;
+    Send.todos.destroy({
+        where: {id:  req.params.id}
+      })
+      .then( result => {
+        res.redirect("/main")
+      })
+      .catch( err => {
+        console.log("데이터 삭제 실패");
+    });
 }
-exports.main_update = (req, res) => {
+
+exports.main_Contents_update = (req, res) => {
+    let postID = req.params.id;
     let body = req.body;
+
+    if (body.InputContents == '') {
+        console.log("내용을 입력해주세요");
+      }else{
+        Send.todos.update({
+        Contents: body.InputContents
+      },{
+        where: {id: postID}
+      })
+      .then( result => {
+        console.log("데이터 수정 완료");
+        res.redirect("/main");
+      })
+      .catch( err => {
+        console.log("데이터 수정 실패");
+      });
+    }
 }
+exports.main_finished_update = (req, res) => {
+    let postID = req.params.id;
+    Send.todos.findOne({
+        where: {id: postID}
+    })
+    .then( result => {
+        let finished;
+        if (result.finished) {
+            finished = '0';
+            console.log("참");
+          }else{
+            finished = '1';
+            console.log("거짓");
+          }
+          console.log(finished);
+          console.log(postID);
+          Send.todos.update({
+            finished: finished
+          },{
+            where: {id: postID}
+          })
+          .then( result => {
+            console.log("데이터 수정 완료");
+            res.redirect("/main");
+          })
+          .catch( err => {
+            console.log("데이터 수정 실패");
+          });
+        })
+        .catch( err => {
+            console.log("데이터 수정 실패");
+    });
+}
+
+
 
 exports.register = (req, res) => {
     let body = req.body;

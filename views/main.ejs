@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>ToDoList</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+
+<main>
+<div class="ListInput">
+    <h1>ToDoList</h1>
+    <form action="/main/add/<%=user.id%>" method="POST">
+    <div class="Input">
+        <input type="text" name="inputContent" class="inputbox" placeholder="내용을 입력하세요">
+    </div>
+    <td class="bt"><input type="submit" value="추가"></input></td>
+    </form>
+</div>
+<div class="ListInput">
+<table>
+	<tr>
+		<td>해야할 일</td>
+        <td>완료</td>
+		<td>삭제</td>
+	</tr>
+	<% for(let td of todo) { %>
+		<tr>
+			<td><%= td.Contents %></td>
+			<form action="/main/chack/<%=td.id%>" method="POST">
+				<td class="bt"><input type="submit" value="완료"></input></td>
+            </form>
+            <form action="/main/del/<%=td.id%>" method="POST">
+				<td class="bt"><input type="submit" value="삭제"></input></td>
+            </form>
+		</tr>
+	<% } %>
+</table>
+</div>
+</main>
+</body>
+</html>

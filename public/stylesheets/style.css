@@ -43,3 +43,34 @@ width: 100px;
 height: 30px;
 font-size:18px;
 }
+
+
+
+
+
+
+.insert_bt_div{
+  width: 100px;
+  height: 40px;
+  padding: 10px;
+  margin:auto auto;
+  }
+  ui{
+    font-size:20px;
+    margin-left: 20px;
+    padding-bottom: 10px;
+    border: 0px;
+  }
+  table {
+    width: 100%;
+    border-top: 1px solid #444444;
+  border-collapse: collapse;
+  text-align: center
+  }
+  th, td {
+    border-bottom: 1px solid #444444;
+    padding: 10px;
+  }
+  .bt {
+  width: 70px;
+  }
