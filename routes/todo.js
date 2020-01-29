@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
 const SECRET = 'Chunwol';
 const Send = require('../models');
+const sequelize = require("sequelize");
+const Op = sequelize.Op;
 
 exports.main_accesschack = (req, res, next) => {
     try{
@@ -9,27 +11,35 @@ exports.main_accesschack = (req, res, next) => {
             let decoded = jwt.verify(token.token, SECRET)
             if(token){
                 console.log("로그인성공");
-                //console.log(decoded.userid);
-                res.render('main', decoded.userid);
-                //
+                Send.todos.findAll({
+                    where:{
+                        userid: {
+                            [Op.like]: decoded.userid
+                        }
+                    }
+                })
+                .then( result => {
+                    res.render('main', {todo : result});
+                })
             }
-        }else{
+        } else {
             console.log("로그인해주세요");
             res.redirect("/login");
         }
-    }catch(err) {
+    }
+    catch(err) {
         console.log("토큰 만료");
         res.redirect("/login");
     }
 };
 
-
+exports.main_show
 
 exports.register = (req, res) => {
     let body = req.body;
     if (body.inputID == '' || body.inputPW == '' || body.inputName == '') {
       console.log("공백이 존재합니다");
-    }else{
+    } else {
         Send.user.create({
       userid: body.inputID,
       password: body.inputPW,

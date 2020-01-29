@@ -1,16 +1,16 @@
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('user', {
+    return sequelize.define('todos', {
         userid: {
             type: DataTypes.STRING(20),
             allowNull: false,
             unique: true,
         },
-        password: {
+        Contents: {
             type: DataTypes.STRING(50),
             allowNull: false,
         },
-        name: {
-            type: DataTypes.STRING(10),
+        finished: {
+            type: DataTypes.BOOLEAN,
             allowNull: false,
         },
     });
