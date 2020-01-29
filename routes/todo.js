@@ -2,14 +2,16 @@ const jwt = require('jsonwebtoken');
 const SECRET = 'SECRET';
 const User = require('../models');
 
-exports.accesschack = (req, res, next) => {
+exports.main_accesschack = (req, res, next) => {
     try{
         let token = req.cookies.accessToken;
         if(typeof token !== 'undefined'){
             let decoded = jwt.verify(token.token, SECRET)
             if(token){
                 console.log("로그인성공");
-                res.render('main', { title: 'Express' });
+                //console.log(decoded.userid);
+                res.render('main', decoded.userid);
+                //
             }
         }else{
             console.log("로그인해주세요");
