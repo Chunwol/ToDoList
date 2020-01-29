@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const SECRET = 'Chunwol';
-const User = require('../models');
+const Send = require('../models');
 
 exports.main_accesschack = (req, res, next) => {
     try{
@@ -30,7 +30,7 @@ exports.register = (req, res) => {
     if (body.inputID == '' || body.inputPW == '' || body.inputName == '') {
       console.log("공백이 존재합니다");
     }else{
-    User.user.create({
+        Send.user.create({
       userid: body.inputID,
       password: body.inputPW,
       name: body.inputName
@@ -47,7 +47,7 @@ exports.register = (req, res) => {
 
 exports.login = (req, res) => {
     let body = req.body;
-    User.user.count({
+    Send.user.count({
     where: {userid: body.inputID, password: body.inputPW}
     })
     .then(result => {
