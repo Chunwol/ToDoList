@@ -15,9 +15,4 @@ router.get('/main', todo.main_accesschack);
 router.post('/signin', todo.register);
 router.post('/login', todo.login);
 
-//router.get('/main', (req, res) => {
-//  todo.accesschack;
-//  res.render('main', { title: 'Express' });
-//});
-
 module.exports = router;
