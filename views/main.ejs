@@ -7,13 +7,13 @@
 <body>
 
 <main>
-<div class="ListInput">
+<div class="ContentInput">
     <h1>ToDoList</h1>
     <form action="/main/add/<%=user.id%>" method="POST">
-    <div class="Input">
-        <input type="text" name="inputContent" class="inputbox" placeholder="내용을 입력하세요">
+    <div class="Content_Input">
+        <input type="text" name="inputContent" class="inputbox2" placeholder="내용을 입력하세요">
+        <td><input class="Content_bt" type="submit" value="추가"></input></td>
     </div>
-    <td class="bt"><input type="submit" value="추가"></input></td>
     </form>
 </div>
 <div class="ListInput">
@@ -25,7 +25,12 @@
 	</tr>
 	<% for(let td of todo) { %>
 		<tr>
-			<td><%= td.Contents %></td>
+            <%if(td.finished){%>
+                <td><%= td.Contents %></td>
+            <% }else{ %>
+                <td class="Chack"><%= td.Contents %></td>
+            <% } %>
+
 			<form action="/main/chack/<%=td.id%>" method="POST">
 				<td class="bt"><input type="submit" value="완료"></input></td>
             </form>

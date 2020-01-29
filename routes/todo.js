@@ -98,13 +98,9 @@ exports.main_finished_update = (req, res) => {
         let finished;
         if (result.finished) {
             finished = '0';
-            console.log("참");
           }else{
             finished = '1';
-            console.log("거짓");
           }
-          console.log(finished);
-          console.log(postID);
           Send.todos.update({
             finished: finished
           },{
