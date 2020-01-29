@@ -1,0 +1,45 @@
+main{
+  width: auto;
+  display: flex;
+flex-direction: column;
+justify-content: center;
+}
+.ListInput{
+max-width: 500px;
+  width: auto;
+height: auto;
+}
+.Input{
+margin-bottom: 10px;
+width: auto;
+height: auto;
+margin-left: 20px;
+border:1px solid black;
+}
+.inputbox{
+max-width: 500px;
+  width:100%;
+  height:30px;
+  font-size:15px;
+  cursor: text;
+  border:0px;
+}
+.Box{
+margin-top: 15px;
+margin-bottom: 20px;
+text-align: center;
+}
+#send{
+width:100px;
+height:30px;
+font-size:18px;
+}
+h1{
+text-align: center;
+}
+
+.insert_bt {
+width: 100px;
+height: 30px;
+font-size:18px;
+}

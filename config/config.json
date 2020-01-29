@@ -1,0 +1,10 @@
+{
+  "development": {
+    "username": "chunwol",
+    "password": "dlatjrgus0215",
+    "database": "node",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  }
+}
