@@ -11,6 +11,7 @@ router.get('/', function(req, res, next) {
 router.get('/login', (req, res) => res.render('login', { title: 'Express' }));
 router.get('/signin', (req, res) => res.render('signin', { title: 'Express' }));
 router.get('/main', todo.main_show);
+router.get('/logout', todo.logout);
 
 router.post('/main/add/:id', todo.main_insert);
 router.post('/main/del/:id', todo.main_delete);

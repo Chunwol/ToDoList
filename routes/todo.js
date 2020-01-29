@@ -68,27 +68,7 @@ exports.main_delete = (req, res) => {
     });
 }
 
-exports.main_Contents_update = (req, res) => {
-    let postID = req.params.id;
-    let body = req.body;
 
-    if (body.InputContents == '') {
-        console.log("내용을 입력해주세요");
-      }else{
-        Send.todos.update({
-        Contents: body.InputContents
-      },{
-        where: {id: postID}
-      })
-      .then( result => {
-        console.log("데이터 수정 완료");
-        res.redirect("/main");
-      })
-      .catch( err => {
-        console.log("데이터 수정 실패");
-      });
-    }
-}
 exports.main_finished_update = (req, res) => {
     let postID = req.params.id;
     Send.todos.findOne({
@@ -152,7 +132,7 @@ exports.login = (req, res) => {
     userid : body.inputID
     }, SECRET, {
     algorithm: 'HS256',
-    expiresIn: '60m'
+    expiresIn: '24h'
     })
     res.cookie('accessToken', {token: token});
     console.log("로그인 성공.");
@@ -164,4 +144,9 @@ exports.login = (req, res) => {
     .catch(err => {
     console.log("로그인 실패.");
     })
+}
+
+exports.logout = (req, res) => {
+    res.clearCookie('accessToken');
+    res.redirect("/login");
 }

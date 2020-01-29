@@ -7,6 +7,11 @@
 <body>
 
 <main>
+<div class="logout">
+    <%=user.userid%>님 환영합니다.
+    &emsp;
+    <a href="/logout">로그아웃</a>
+</div>
 <div class="ContentInput">
     <h1>ToDoList</h1>
     <form action="/main/add/<%=user.id%>" method="POST">
@@ -20,8 +25,8 @@
 <table>
 	<tr>
 		<td>해야할 일</td>
-        <td>완료</td>
-		<td>삭제</td>
+        <td class="bt">완료</tdclass="bt">
+		<td class="bt">삭제</tdclass="bt">
 	</tr>
 	<% for(let td of todo) { %>
 		<tr>
