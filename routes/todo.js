@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const SECRET = 'SECRET';
+const SECRET = 'Chunwol';
 const User = require('../models');
 
 exports.main_accesschack = (req, res, next) => {
