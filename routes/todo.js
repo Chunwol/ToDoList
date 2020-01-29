@@ -11,15 +11,23 @@ exports.main_accesschack = (req, res, next) => {
             let decoded = jwt.verify(token.token, SECRET)
             if(token){
                 console.log("로그인성공");
-                Send.todos.findAll({
-                    where:{
-                        userid: {
-                            [Op.like]: decoded.userid
-                        }
-                    }
+                
+                Send.user.findOne({
+                    where: {userid: decoded.userid}
                 })
-                .then( result => {
-                    res.render('main', {todo : result});
+                .then( result1 => {
+                    Send.todos.findAll({
+                        where:{
+                            userid: {
+                                [Op.like]: result1.id
+                            }
+                        }
+                    })
+                    .then( result2 => {
+                        //console.log(result1);
+                        console.log(result2);
+                        res.render('main', {todo : result2, user: result1});
+                    })
                 })
             }
         } else {

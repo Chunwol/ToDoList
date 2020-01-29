@@ -1,9 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('todos', {
+    const todos = sequelize.define('todos', {
         userid: {
-            type: DataTypes.STRING(20),
+            type: DataTypes.INTEGER,
             allowNull: false,
-            unique: true,
+            //unique: true,
         },
         Contents: {
             type: DataTypes.STRING(50),
@@ -12,6 +12,13 @@ module.exports = (sequelize, DataTypes) => {
         finished: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
-        },
+        }
     });
+
+    todos.associate = models => {
+        todos.belongsTo(models.user, {
+          foreignKey: "userid"
+        })
+    };
+    return todos;
 }

@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('user', {
+    const user = sequelize.define('user', {
         userid: {
             type: DataTypes.STRING(20),
             allowNull: false,
@@ -14,4 +14,10 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
     });
+
+    //user.associate = (models) => {
+    //   user.hasMany(models.reply);
+    //};
+
+    return user;
 }
