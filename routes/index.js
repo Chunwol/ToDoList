@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 //router.get('/main', (req, res) => res.render('main', { title: 'Express' }));
 router.get('/login', (req, res) => res.render('login', { title: 'Express' }));
 router.get('/signin', (req, res) => res.render('signin', { title: 'Express' }));
-router.get('/main', todo.main_accesschack);
+router.get('/main', todo.main_show);
 
 
 router.post('/signin', todo.register);

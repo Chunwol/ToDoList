@@ -4,14 +4,13 @@ const Send = require('../models');
 const sequelize = require("sequelize");
 const Op = sequelize.Op;
 
-exports.main_accesschack = (req, res, next) => {
+exports.main_show = (req, res, next) => {
     try{
         let token = req.cookies.accessToken;
         if(typeof token !== 'undefined'){
             let decoded = jwt.verify(token.token, SECRET)
             if(token){
-                console.log("로그인성공");
-                
+                console.log("인증성공");
                 Send.user.findOne({
                     where: {userid: decoded.userid}
                 })
@@ -25,7 +24,7 @@ exports.main_accesschack = (req, res, next) => {
                     })
                     .then( result2 => {
                         //console.log(result1);
-                        console.log(result2);
+                        //console.log(result2);
                         res.render('main', {todo : result2, user: result1});
                     })
                 })
@@ -40,8 +39,15 @@ exports.main_accesschack = (req, res, next) => {
         res.redirect("/login");
     }
 };
-
-exports.main_show
+exports.main_insert = (req, res) => {
+    let body = req.body;
+}
+exports.main_delete = (req, res) => {
+    let body = req.body;
+}
+exports.main_update = (req, res) => {
+    let body = req.body;
+}
 
 exports.register = (req, res) => {
     let body = req.body;
